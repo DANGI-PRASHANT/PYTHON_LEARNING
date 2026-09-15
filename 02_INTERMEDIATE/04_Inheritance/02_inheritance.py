@@ -48,7 +48,7 @@ class Mother:
     def skill (self):
         print("I can cook")
 
-class  Son(Mother,Father):  # case of same function name.
+class  Son(Mother,Father):  # case of same function name.s
     pass
 
 s1 = Son()
