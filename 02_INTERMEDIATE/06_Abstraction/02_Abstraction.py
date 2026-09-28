@@ -111,3 +111,34 @@ a1 = Analyst()
 a1.security()
 a1.critical_data()
 a1.modify_rules()
+
+#Another Good example: finding area,
+
+from abc import ABC , abstractmethod
+
+class shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+class Rectangle(shape):
+    def __init__(self,Length,Breadth):
+        self.Length = Length
+        self.Breadth = Breadth
+
+    def area(self):
+        return self.Length * self.Breadth
+
+class Circle(shape):
+    def __init__(self,Radius):
+        self.Radius = Radius
+
+    def area(self):
+        return 22/7 * self.Radius **2
+
+r1 = Rectangle(10,3)
+print(r1.area())
+
+c1 = Circle(33)
+print(c1.area())
+
