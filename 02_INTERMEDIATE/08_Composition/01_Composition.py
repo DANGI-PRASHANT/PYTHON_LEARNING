@@ -89,7 +89,7 @@ class Health:
         self.hp += amount
 
     def take_damage(self,amount):
-        self.heal -= amount
+        self.hp -= amount
 
 class Inventory:
     def __init__(self):
@@ -116,8 +116,8 @@ p1.Inventory.add_item("Knife")
 p1.Inventory.add_item("Helmet")
 p1.Inventory.add_item("armour")
 
+p1.Health.take_damage(30)
 p1.Health.heal(20)
-p1.Health.take_damage(55)
 p1.status()
 
 p1.Inventory.show_item()
