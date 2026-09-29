@@ -110,6 +110,7 @@ class Player:
         print(f"HP: {self.Health.hp}")
 
 
+ # --------- usage ----------
 p1 = Player()
 
 p1.Inventory.add_item("Knife")
