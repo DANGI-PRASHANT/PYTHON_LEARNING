@@ -122,3 +122,35 @@ p1.Health.heal(20)
 p1.status()
 
 p1.Inventory.show_item()
+
+
+# Another example: (Libary system)
+
+class Book:
+    def __init__(self,title):
+        self.title = title
+
+class Library:
+    def __init__(self):
+        self.books = [] # list of object
+
+    def add_book(self,title):
+        book = Book(title) # composition
+        self.books.append(book)
+
+    def display_book(self):
+        for book in self.books:
+            print(book.title)
+
+lib = Library()
+
+lib.add_book("Python")
+lib.add_book("Java")
+lib.add_book("C++")
+
+lib.display_book()
+
+
+
+        
+    
