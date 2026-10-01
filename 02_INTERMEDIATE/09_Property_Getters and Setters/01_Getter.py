@@ -56,6 +56,7 @@ t1 = Teacher("Laxman")
 print(t1.name)
 
 
+
 # Another example: (Getter)
 
 class Product:
@@ -88,7 +89,11 @@ class Rectangle:
 
 r1 = Rectangle(22,33)
 print(f"Area of Rectangle: {r1.area}")
+
+
+
     
+
 
 
 
