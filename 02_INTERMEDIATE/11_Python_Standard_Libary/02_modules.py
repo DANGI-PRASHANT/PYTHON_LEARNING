@@ -52,3 +52,12 @@ import math
 print(math.factorial(5))
 print(math.factorial(10))
 print(math.factorial(0))
+
+
+# Random modules (random generation) :
+
+import random
+
+print(random.randint(1,10))
+
+print(random.randrange(1,10))
