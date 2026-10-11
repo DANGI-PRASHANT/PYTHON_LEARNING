@@ -1,13 +1,14 @@
 # Modif global variables inside function .
-# num1 = int(input('Enter a number: '))
 
-# def change_number():
-#     global num1
-#     num1 += 5
+num1 = int(input('Enter a number: '))
+
+def change_number():
+    global num1
+    num1 += 5
 
 
-# change_number()
-# print(f"Increased by 5 is {num1}")
+change_number()
+print(f"Increased by 5 is {num1}")
 
 
 # Lamdha function:
