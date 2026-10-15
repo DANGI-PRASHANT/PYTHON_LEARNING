@@ -33,8 +33,8 @@ Libary_Data = []
 
 def book_menu():
     print("======================Book List===================")
-    for index, value in enumerate(Libary_books):
-        print(f"{index + 1}. {value}")
+    for index, value in enumerate(Libary_books,1):
+        print(f"{index }. {value}")
 
 
 # Add Books
