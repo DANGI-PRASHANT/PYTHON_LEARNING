@@ -1,4 +1,16 @@
 {
-    "students": {},
-    "courses": []
+    "students": {
+        "Shikhar Oli": {
+            "courses": [
+                "Python"
+            ],
+            "attendance": {
+                "Python": 1
+            }
+        }
+    },
+    "courses": [
+        "Python",
+        "CSS"
+    ]
 }
