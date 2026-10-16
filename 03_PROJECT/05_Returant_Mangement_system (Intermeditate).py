@@ -1,12 +1,5 @@
 
-food_items = [
-    {"Food_ID":"FD001","item_name": "Chicken Momo", "category": "Snacks", "price": 11.99,"status": "Avaliable"},
-    {"Food_ID":"FD002","item_name": "Veg Momo", "category": "Snacks", "price": 9.99,"status": "Avaliable"},
-    {"Food_ID":"FD003","item_name": "Dal Bhat", "category": "Main Course", "price": 14.99,"status": "Avaliable"},
-    {"Food_ID":"FD004","item_name": "Chicken Curry", "category": "Main Course", "price": 15.99,"status": "Avaliable"},
-    {"Food_ID":"FD005","item_name": "Masala Chai", "category": "Drinks", "price": 3.99,"status": "Avaliable"},
-    {"Food_ID":"FD006","item_name": "Mango Lassi", "category": "Drinks", "price": 4.99,"status": "Avaliable"},
-]
+food_items = []
 
 order_items = []
 
@@ -47,7 +40,7 @@ def add_food_items():
         "item_name": item_name,
         "category": category,
         "price": price,
-        "Status": "Available"
+        "status": "Available"
     }
 
     food_items.append(new_item)
@@ -61,7 +54,7 @@ def view_food_item():
         print("No food items available!")
         return
 
-    print("\n===== FOOD MENU =====")
+    print("\n===== FOOD LIST =====")
 
     for item in food_items:
         print("Food ID:", item["Food_ID"])
@@ -81,11 +74,11 @@ def search_food_items():
     for item in food_items:
         if food_name.lower() == item["item_name"] or food_name.lower() == item["Food_ID"].lower():
             print("✅ Found it: ")
-            print(f'Food_ID : {item["Food_ID"]}')
-            print(f'Item_Name: {item["item_name"]}')
-            print(f'Category: {item["category"]}')
-            print(f'Price: {item["price"]}')
-            print(f"Status: {item["status"]}")
+            print(f'Food_ID : {item['Food_ID']}')
+            print(f'Item_Name: {item['item_name']}')
+            print(f'Category: {item['category']}')
+            print(f'Price: {item['price']}')
+            print(f"Status: {item['status']}")
             
             found = True
             return
@@ -104,19 +97,27 @@ def update_food_items():
     for item in food_items:
         if id.lower() == item["Food_ID"].lower():
 
-            item["item_name"] = input(f"Enter a new_item_name ({item["item_name"]}): ")
-            item["category"] = input(f"Enter a New_Category ({item["category"]}): ")
-            item["price"] = input(f"Enter a New_Price (${item["price"]}): ")
+            item["item_name"] = input(f"Enter a new_item_name ({item['item_name']}): ")
+            item["category"] = input(f"Enter a New_Category ({item['category']}): ")
+            item["price"] = input(f"Enter a New_Price (${item['price']}): ")
             print("✅ Successfully Updated!\n")
             return
 
     print("❌ Invalid ID. Please try again\n")
-            
+
+# 6. DELETE FOOD ITEM
+
+def delete_food_item():
+    food_id = input("Enter a Food_ID : ")
+
+    for item in food_items:
+        if item["Food_ID"].lower() == food_id.lower():
+            food_items.remove(item)
+            print("✅ Items deleted successfully!\n")
+            return
+
 
 # 7. CREATE ORDER
-
-
-order_items = []
 
 def create_order():
     
@@ -147,6 +148,7 @@ def create_order():
             "customer_name": customer_name,
             "food_name": str(food_name),
             "quantity" : int(Quantity),
+            "price" : float(input("Enter a Price: ")),
             "status": status,
             }
         
@@ -165,9 +167,9 @@ def create_order():
                     print("❌ This same Order already exists!")
                     return
     
-        print(f"Customer_Name: {item["customer_name"]}")
-        print(f"Order_ID: {item["order_id"]}")
-        print(f"Status: {item["status"]}")
+        print(f"Customer_Name: {item['customer_name']}")
+        print(f"Order_ID: {item['order_id']}")
+        print(f"Status: {item['status']}")
         print(f"------Items Names----")
 
         for item in order_items:
@@ -175,15 +177,100 @@ def create_order():
 
 
         print(f"Total Order Items: {len(order_items)}")
+
         print("\n✅ Food item Ordered successfully!\n")
    
 
 
 
+# 8. GENERATE BILL
+
+def generate_bill():
+    id = input("Enter Order_Id: ")
+
+    found = False
+    subtotal = 0
+    print("\n========== CUSTOMER BILL ==========")
+
+    for item in order_items:
+        if item["order_ID"].lower() == id.lower():
+            found = True
+
+            item_total = item['price'] * item['quantity']
+            subtotal += item_total
+
+            print(f"\n{item['food_name']}")
+            print(f"Quantity: {item['quantity']}")
+            print(f"Unit Price: ${item['price']}")
+            print(f"Item Total : {item_total}")
+
+    if not found:
+        print(f"Invalid Order ID!")
+
+    tax = subtotal * 0.03
+    discount = subtotal * 0.1
+    Final_total = subtotal - discount + tax
+
+    print("\n---------------------------------")
+    print(f"Tax: ${tax}")
+    print(f"Discount: ${discount}")
+    print(f"Subtotal: ${subtotal}")
+    print("----------------------------------")
+    print(f"\n===============================")
+    print(f"   Final Total: ${Final_total}   ")
+    print(f"\n===============================")
 
 
+# 9. Main Menu
 
+def main_menu():
+    while True:
+        
+        print("\n==========================RESTURANT MANAGEMENT SYSTEM==========================\n")
+        print("1.Show Food Menu")
+        print("2. Add Food Items")
+        print("3. View All Items")
+        print("4. Search Food Items")
+        print("5. Update Food Items")
+        print("6. Delete Food Items")
+        print("7. Create New Order and View all Order")
+        print("8. Generate Customer Bill")
+        print("9. Exit")
 
+        choice = input("\nEnter a number (1 to 10): ")
 
+        if choice == "1":
+            food_menu()
 
+        elif choice == "2":
+            add_food_items()
+
+        elif choice == "3":
+            view_food_item()
+
+        elif choice == "4":
+            search_food_items()
+
+        elif choice == "5":
+            update_food_items()
+
+        elif choice == "6":
+            delete_food_item()
+
+        elif choice == "7":
+            create_order()
+
+        elif choice == "8":
+            generate_bill()
+
+        elif choice == "10":
+            print("Exiting program. Goodbye! 👋")
+            break
+
+        else:
+            print("❌ Invalid choice. Try again.\n")
+
+# Run the program:
+
+main_menu()
 
